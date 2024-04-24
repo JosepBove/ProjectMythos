@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://bv0sc3s5onch3"]
+
+[ext_resource type="Script" path="res://scripts/characters/player/player.cs" id="1_oqwr8"]
+[ext_resource type="Texture2D" uid="uid://dn0yvrhx8mskd" path="res://assets/characters/player/player.png" id="1_tx73t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7idrj"]
+radius = 15.0
+height = 52.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gqrp"]
+atlas = ExtResource("1_tx73t")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkgs7"]
+atlas = ExtResource("1_tx73t")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyxov"]
+atlas = ExtResource("1_tx73t")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtfaw"]
+atlas = ExtResource("1_tx73t")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi46q"]
+atlas = ExtResource("1_tx73t")
+region = Rect2(256, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7w8h"]
+atlas = ExtResource("1_tx73t")
+region = Rect2(320, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_030ub"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gqrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkgs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyxov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtfaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi46q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7w8h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(-466, 149)
+script = ExtResource("1_oqwr8")
+
+[node name="PlayerCollision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollision"]
+position = Vector2(1043, 187)
+shape = SubResource("CapsuleShape2D_7idrj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1046, 184)
+rotation = 3.14159
+scale = Vector2(842663, 109.836)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1042, 182)
+sprite_frames = SubResource("SpriteFrames_030ub")
+frame = 2
+frame_progress = 0.815985
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1043, 187)
+shape = SubResource("CapsuleShape2D_7idrj")
+
+[connection signal="area_entered" from="PlayerCollision" to="." method="_on_area_2d_area_entered"]
