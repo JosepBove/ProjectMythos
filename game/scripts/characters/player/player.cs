@@ -1,17 +1,22 @@
 using System;
 using Godot;
+using Godot.Collections;
 
 public partial class player : CharacterBody2D
 {
 	public const float Speed = 300.0f;
 
 	private ShaderMaterial selectedMat = GD.Load<ShaderMaterial>("res://materials/selected.tres");
-	//private AnimatedSprite2D animation;
+	private AnimatedSprite2D animation;
 
 
 	public override void _Ready()
 	{
 		//game_manager.player = player;
+		Array<Node> children = GetChildren();
+
+		animation = (AnimatedSprite2D)children[2];
+		animation.Play("default");
 	}
 
 	public override void _Process(double delta)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bv0sc3s5onch3"]
+[gd_scene load_steps=12 format=3 uid="uid://bv0sc3s5onch3"]
 
 [ext_resource type="Script" path="res://scripts/characters/player/player.cs" id="1_oqwr8"]
-[ext_resource type="Texture2D" uid="uid://dn0yvrhx8mskd" path="res://assets/characters/player/player.png" id="1_tx73t"]
+[ext_resource type="Texture2D" uid="uid://dn0yvrhx8mskd" path="res://assets/entity/player/player.png" id="1_tx73t"]
+[ext_resource type="PackedScene" uid="uid://befu8a61wh852" path="res://scenes/components/HealthComponent.tscn" id="3_bba63"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7idrj"]
 radius = 15.0
@@ -75,11 +76,12 @@ scale = Vector2(842663, 109.836)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1042, 182)
 sprite_frames = SubResource("SpriteFrames_030ub")
-frame = 2
-frame_progress = 0.815985
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1043, 187)
 shape = SubResource("CapsuleShape2D_7idrj")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_bba63")]
+MaxHealth = 200.0
 
 [connection signal="area_entered" from="PlayerCollision" to="." method="_on_area_2d_area_entered"]
